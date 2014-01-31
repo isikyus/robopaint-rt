@@ -153,9 +153,14 @@ void scanSerial()
 
       j = 0;
       while (j < PortCount) {
-        str2 = Serial.list()[j].substring(0, 11);
-        if (str1.equals(str2) == true)
-          OpenPortList =  append(OpenPortList, j);
+        str2 = Serial.list()[j];
+          System.out.println("Trying 0" + str2);
+        
+        if (str2.length() >= 11) {
+          str2 = str2.substring(0, 11);
+          if (str1.equals(str2) == true)
+            OpenPortList =  append(OpenPortList, j);
+        }
         j++;
       }
     }
@@ -167,7 +172,7 @@ void scanSerial()
 
     j = 0;
     while (j < OpenPortList.length) {
-
+      
       portErr = false;
       portName = Serial.list()[OpenPortList[j]];
 
